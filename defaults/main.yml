@@ -2,14 +2,9 @@
 imageback: studentlist:latest
 networkname: projeta
 
-dest_home: /home/aurelien
-
-
-
-
-
-
-
-
-
-
+list_users:
+  - {nom : bob, age: 12 }
+  - {nom : alice, age: 12 }
+  - {nom : job, age: 18 }
+  - {nom : alex, age: 17 }
+  - {nom : Noah, age: 123 }

@@ -1,2 +1,7 @@
 ---
 # vars file for backend
+list_users:
+  - {nom: test, age: 1}
+  - {nom: aurelien, age: 30}
+  - {nom: maria, age: 25}
+  - {nom: zai, age: 26}

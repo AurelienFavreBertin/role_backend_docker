@@ -4,12 +4,24 @@
   community.docker.docker_image:
     name: "{{ imageback }}"
     build:
-      path: "{{ dest_home }}/student-list/simple_api"
+      path: "/home/{{ ansible_user }}/student-list/simple_api"
     source: build
+  tags: 
+    - launch-backend
 
 - name: Create a network
   community.docker.docker_network:
     name: "{{ networkname }}"
+  tags: 
+    - launch-backend 
+
+- name: "Edit student_age.json"
+  template:
+    src: student_age.json.j2
+    dest: /home/{{ ansible_env.USER }}/student-list/simple_api/student_age.json
+  tags: 
+    - launch-backend
+    - templating
 
 - name: Start a container with the backend and connect to network
   docker_container:
@@ -21,6 +33,6 @@
     ports:
       - "5000:5000"
     volumes:
-      - /home/aurelien/student-list/simple_api/student_age.json:/data/student_age.json
-  tags: 
+      - "/home/{{ ansible_env.USER }}/student-list/simple_api/student_age.json:/data/student_age.json"
+  tags:
     - launch-backend
